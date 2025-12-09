@@ -12,7 +12,7 @@ public class TransferOperation {
 
     @ManyToOne
     @JoinColumn(name = "account_id")
-    private BankAccount account;
+    private Account account;
 
     private String bankAccountTo;
 }
