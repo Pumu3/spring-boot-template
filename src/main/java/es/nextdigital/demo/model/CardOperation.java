@@ -1,29 +1,65 @@
 package es.nextdigital.demo.model;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
 public class CardOperation {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "card_id")
-    private Card card;
+    private Account account;
 
-    @ManyToOne
-    @JoinColumn(name = "account_id")
-    private BankAccount account;
+    private BigDecimal amount;
 
-    @Enumerated(EnumType.ORDINAL)
-    private CardOperationType type;
+    @Enumerated(EnumType.STRING)
+    private OperationType type;
 
-    private Integer quantity;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public OperationType getType() {
+        return type;
+    }
+
+    public void setType(OperationType type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "CardOperation [id=" + id + ", account=" + account + ", amount=" + amount + ", type=" + type + "]";
+    }
 }
